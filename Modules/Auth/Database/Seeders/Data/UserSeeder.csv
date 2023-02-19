@@ -1,0 +1,3 @@
+name,email,password
+admin,admin@gmail.com,passwordAdmin
+user,user@gmail.com,passwordUser

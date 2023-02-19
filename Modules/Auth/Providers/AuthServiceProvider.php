@@ -98,9 +98,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
-        //    "\Modules\Auth\Database\Factories\UserFactory"
-        ];
+        return [];
     }
 
     private function getPublishableViewPaths(): array

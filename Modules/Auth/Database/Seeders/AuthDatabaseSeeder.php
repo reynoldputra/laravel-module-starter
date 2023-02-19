@@ -4,7 +4,7 @@ namespace Modules\Auth\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Database\Seeder\SeedUserTableSeeder;
+use Modules\Auth\Database\Seeders\SeedUserTableSeeder;
 
 class AuthDatabaseSeeder extends Seeder
 {

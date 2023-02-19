@@ -2,9 +2,10 @@
 
 namespace Modules\Auth\Database\Seeders;
 
+use App\Lib\SeederHelper;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 use Modules\Auth\Entities\User;
+use Illuminate\Database\Eloquent\Model;
 
 class SeedUserTableSeeder extends Seeder
 {
@@ -16,10 +17,6 @@ class SeedUserTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-        // $this->call("OthersTableSeeder");
+        SeederHelper::csvSeed("Modules\Auth\Entities\User", base_path("Modules\Auth\Database\Seeders\Data\UserSeeder.csv"));
     }
 }
