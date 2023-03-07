@@ -2,8 +2,14 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Carbon\Carbon;
+use Psr\Log\LogLevel;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -46,5 +52,25 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        $code = $exception->getCode(); 
+        $message = $exception->getMessage();
+        if ($exception instanceof ValidationException) {
+            $code = 404;
+        }
+        $content = [
+            "code" => $code,
+            "success" => false,
+            "message" => $message,
+        ];
+        return response()->json(
+            $content,
+            $code,
+            [],
+            JSON_UNESCAPED_SLASHES
+        );
     }
 }
