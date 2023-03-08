@@ -3,9 +3,11 @@
 ## Last Progress
 - creating dto
 - create simple error handling for validtion error
-## TO DO
 - dto file structure
 - implement auth
+## TO DO
+- fix seeder validation column and error handling log level
+- throttle
 
 ## 1. Change project name and data base in .env.example
 - APP_NAME
@@ -40,3 +42,10 @@ I use laravel-modules package to organize laravel folder structure. nwidar/larav
 ## 6. Redis
 
 ## 7. Email
+
+
+
+
+
+#### Reference
+- <a href="https://cerwyn.medium.com/laravel-generalizing-api-response-error-handling-85646a195fea">Generalizing API Response & Error Handling</a>

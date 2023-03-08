@@ -2,20 +2,42 @@
 
 namespace Modules\Auth\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Traits\ApiResponse;
+use Exception;
 use Illuminate\Routing\Controller;
+use Modules\Auth\Http\DTO\LoginDTO;
 use Modules\Auth\Http\DTO\UserDTO;
-use Modules\Auth\Http\Requests\LoginDTO;
-// use Modules\Auth\Http\DTO\LoginDTO;
-// use Modules\Auth\Http\Requests\LoginDTO;
+use Modules\Auth\Http\Services\AuthService;
 
 class AuthController extends Controller
 {
-    public function login(LoginDTO $request){
-        dd($request);
+    use ApiResponse;
+
+    protected $authService;
+
+    public function __construct(
+        AuthService $authService
+    ) {
+        $this->authService = $authService;
     }
 
-    public function register(Request $request){
-        dd($request);
+    public function login(LoginDTO $loginDTO)
+    {
+        try {
+            $result = $this->authService->login($loginDTO);
+            return $this->successResponse($result, "Succes log in.");
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function register(UserDTO $userDTO)
+    {
+        try {
+            $result = $this->authService->register($userDTO);
+            return $this->successResponse($result, "Success create new user.");
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 }

@@ -58,14 +58,22 @@ class Handler extends ExceptionHandler
     {
         $code = $exception->getCode(); 
         $message = $exception->getMessage();
+        $error = null;
         if ($exception instanceof ValidationException) {
-            $code = 404;
+            $code = 400;
+            $message = "There was an error with the submission.";
+            $error = [
+                "error_validation" => $exception->validator->getMessageBag()->getMessages()
+            ];
         }
+        
         $content = [
-            "code" => $code,
             "success" => false,
             "message" => $message,
+            "error" => $error
         ];
+        $code = 422;
+        // dd($content);
         return response()->json(
             $content,
             $code,
