@@ -2,21 +2,23 @@
 
 namespace Modules\Auth\Http\DTO;
 
-use App\Request\ApiRequest;
+use App\Http\Request\ApiRequest;
 
 class LoginDTO extends ApiRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            'email' => 'required|email',
-            'password' => 'required'
-        ];
-    }
-   
+  public function rules() : array
+  {
+    return [
+        'email' => 'required|email',
+        'password' => 'required'
+    ];
+  }
+
+  public function getEmail() : string {
+    return $this->getFieldValue('email'); 
+  } 
+
+  public function getPassword() : string {
+    return $this->getFieldValue('password'); 
+  } 
 }

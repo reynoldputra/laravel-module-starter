@@ -4,7 +4,6 @@ namespace Modules\Auth\Database\Seeders;
 
 use App\Lib\SeederHelper;
 use Illuminate\Database\Seeder;
-use Modules\Auth\Entities\User;
 use Illuminate\Database\Eloquent\Model;
 
 class SeedUserTableSeeder extends Seeder
@@ -14,9 +13,9 @@ class SeedUserTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run() : void
     {
         Model::unguard();
-        SeederHelper::csvSeed("Modules\Auth\Entities\User", base_path("Modules\Auth\Database\Seeders\Data\UserSeeder.csv"));
+        SeederHelper::csvSeed("Modules\Auth\Entities\User", base_path("Modules/Auth/Database/Seeders/Data/UserSeeder.csv"), 'email');
     }
 }

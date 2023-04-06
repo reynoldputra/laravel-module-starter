@@ -11,17 +11,26 @@ use Illuminate\Support\Facades\Auth;
 class AuthService {
     public function register(UserDTO $userDTO)
     {
-        $input = $userDTO->getInputData();
-        $createdUser = User::create($input);
-        return [
-            'name' => $createdUser->name,
-            'email' => $createdUser->email
-        ];
+      $input = [
+        'email' => $userDTO->getEmail(),
+        'name' => $userDTO->getName(),
+        'password' => $userDTO->getPassword()
+      ];
+
+      $createdUser = User::create($input);
+
+      return [
+          'name' => $createdUser->name,
+          'email' => $createdUser->email
+      ];
     } 
 
     public function login(LoginDTO $loginDTO)
     {
-        $input = $loginDTO->getInputData();
+        $input = [
+          'email' => $loginDTO->getEmail(),
+          'password' => $loginDTO->getPassword(),
+        ];
         if(!Auth::attempt($input)) {
             throw new Exception("Invalid email or password", 401);
         }
