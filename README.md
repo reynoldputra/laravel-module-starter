@@ -109,7 +109,7 @@ class ApiRequest extends FormRequest
 }
 ```
 - Create DTO by extend ApiRequest class. You can add getter and setter to inside DTO
-```
+```php
 class UserDTO extends ApiRequest {
     public function rules(): array
     {
@@ -135,7 +135,7 @@ class UserDTO extends ApiRequest {
 ```
 - One important thing about this Form Request is. If we want some field to be unique inside database, we can use 'unique:' to check whether a value exists or not in the database. So we don't need to check if email is in controller or service
 - This is how we use DTO inside controller
-```
+```php
 public function login(LoginDTO $loginDTO)
 {
     try {
